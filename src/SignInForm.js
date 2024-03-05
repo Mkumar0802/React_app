@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import Swal from 'sweetalert2';
 
 const SignInForm = () => {
   let navigate = useNavigate();
@@ -15,19 +15,33 @@ const SignInForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4040/signin", {
-        username,
-        email,
-        password,
-      });
-      console.log(response.data);
-      
-      if (response.data.message === "Sign in successful") {
-          // Redirect the user to the home page
-          navigate("/home");
-      }
+        const response = await axios.post("https://node-task-backend.onrender.com/signin", {
+            username,
+            email,
+            password,
+        });
+        console.log(response.data);
+
+        if (response.data.message === "Sign in successful") {
+            // Show success message with SweetAlert
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Sign in successful',
+               // Redirect the user to the home page
+        
+            });
+
+            navigate("/home");
+        }
     } catch (error) {
-      console.error("Error signing in:", error);
+        console.error("Error signing in:", error);
+        // Show error message with SweetAlert
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error signing in. Please try again later.'
+        });
     }
 };
 
