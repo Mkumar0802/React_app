@@ -15,7 +15,7 @@ function ResetPassword() {
                 return;
             }
 
-            const response = await axios.post(`http://localhost:4040/reset-password/${token}`, {
+            const response = await axios.post(`https://node-task-backend.onrender.com/${token}`, {
                 newPassword
             });
 
