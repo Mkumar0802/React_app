@@ -16,7 +16,7 @@ function Otprestpassword() {
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4040/reset", {
+      const response = await axios.post("https://node-task-backend.onrender.com/reset", {
         email,
         otp,
         newPassword,

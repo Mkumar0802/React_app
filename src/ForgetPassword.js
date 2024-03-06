@@ -10,7 +10,7 @@ function ForgetPassword() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:4040/forget', { email });
+            await axios.post('https://node-task-backend.onrender.com/forget', { email });
             
             // Show success message with SweetAlert2
             Swal.fire({
